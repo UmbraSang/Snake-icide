@@ -39,6 +39,7 @@ def start():
 @bottle.post('/move')
 def move():
     data = bottle.request.json
+	
 
     # TODO: Do things with data
     
@@ -50,10 +51,40 @@ def move():
 	#
 	Matrix = [[0 for x in range(board_width)] for y in range(board_height)]
 	
+	##put food in 2D array
+	food = data["food"]
 	
-	direction = random.choice(directions)
+	for food in food["data"]:
+		Matrix[food["x"]][food["y"]] = -1
 	
-	direction = if 
+	##put snakes in 2D array
+	snakes = data["snakes"]
+	
+	for snake in snakes["data"]:
+		print(snake["body"]["id"])
+		for body in snake.body.data:
+			Matrix[body["x"]][body["y"]] = 1
+	
+	##establish where we are on board
+	myX = data["you"]["body"]["data"]["x"]
+	myY = data["you"]["body"]["data"]["y"]
+	
+	Matrix[myX][myY] = 10
+			
+	##
+	
+	
+
+
+
+
+	
+	#direction = random.choice(directions)
+	
+	
+	
+	
+	direction =
     #
 	#
 	#
