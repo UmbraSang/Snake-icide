@@ -1,4 +1,4 @@
-# battlesnake-python
+# my battlesnake-python
 
 A simple [BattleSnake AI](http://battlesnake.io) written in Python. 
 
