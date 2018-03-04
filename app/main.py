@@ -106,6 +106,11 @@ def route(Goes, myX, myY):
 		elif Matrix[myX+1][myY]==-1:
 			Goes[3]+2
 	
+	for x in Goes:
+		if x != max(Goes):
+			x=0
+	
+	
 	return Goes
 	
 	
