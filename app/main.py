@@ -71,31 +71,46 @@ def move():
 	
 	Matrix[myX][myY] = 10
 			
-	##
+	##set up for logic
 	
+	Goes = [0,0,0,0]
+	Goes = route(Goes, myX, myY)
+	direction = directions[index(max(goes))]
 	
-
-
-
-
-	
-	#direction = random.choice(directions)
-	
-	
-	
-	
-	direction =
-    #
-	#
-	#
-	#
-	#
 	print direction
     return {
         'move': direction,
         'taunt': 'battlesnake-python!'
     }
 
+def route(Goes, myX, myY):
+
+	if myY-1 >= 0:
+		if Matrix[myX][myY-1]==0:
+			Goes[0]+1
+		elif Matrix[myX][myY-1]==-1:
+			Goes[0]+2
+	if myY+1 <= board_height:	
+		if Matrix[myX][myY+1]==0:
+			Goes[1]+1
+		elif Matrix[myX][myY+1]==-1:
+			Goes[1]+2
+	if myX-1 >= 0:
+		if Matrix[myX-1][myY]==0:
+			Goes[2]+1
+		elif Matrix[myX-1][myY]==-1:
+			Goes[2]+2
+	if myX+1 <= board_width:
+		if Matrix[myX+1][myY]==0:
+			Goes[3]+1
+		elif Matrix[myX+1][myY]==-1:
+			Goes[3]+2
+	
+	return Goes
+	
+	
+	
+	
 
 # Expose WSGI app (so gunicorn can find it)
 application = bottle.default_app()
