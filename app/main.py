@@ -44,26 +44,22 @@ def move():
     # TODO: Do things with data
     
     directions = ['up', 'down', 'left', 'right']
-    #
-	#
-	#
-	#
-	#
+
 	Matrix = [[0 for x in range(board_width)] for y in range(board_height)]
 	
 	##put food in 2D array
 	food = data["food"]
 	
 	for food in food["data"]:
-		Matrix[food["x"]][food["y"]] = -1
+	    Matrix[food["x"]][food["y"]] = -1
 	
 	##put snakes in 2D array
 	snakes = data["snakes"]
 	
 	for snake in snakes["data"]:
-		print(snake["body"]["id"])
-		for body in snake.body.data:
-			Matrix[body["x"]][body["y"]] = 1
+	    print(snake["body"]["id"])
+	    for body in snake.body.data:
+	        Matrix[body["x"]][body["y"]] = 1
 	
 	##establish where we are on board
 	myX = data["you"]["body"]["data"]["x"]
