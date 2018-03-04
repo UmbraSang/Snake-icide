@@ -22,7 +22,7 @@ def start():
     board_height = data.get('height')
 
 	#http://www.pngmart.com/image/19182 lion head
-    head_url = '%s://%s/static/head.png ' % (
+    head_url = 'http://www.pngmart.com/image/19182' % (
         bottle.request.urlparts.scheme,
         bottle.request.urlparts.netloc
     )
