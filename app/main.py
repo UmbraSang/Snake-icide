@@ -39,41 +39,39 @@ def start():
 @bottle.post('/move')
 def move():
     data = bottle.request.json
-	
+
 
     # TODO: Do things with data
-    
-    directions = ['up', 'down', 'left', 'right']
 
-	Matrix = [[0 for x in range(board_width)] for y in range(board_height)]
-	
+    directions = ['up', 'down', 'left', 'right']
+    Matrix = [[0 for x in range(board_width)] for y in range(board_height)]
 	##put food in 2D array
-	food = data["food"]
-	
-	for food in food["data"]:
-	    Matrix[food["x"]][food["y"]] = -1
-	
+    food = data["food"]
+
+    for food in food["data"]:
+		Matrix[food["x"]][food["y"]] = -1
+
 	##put snakes in 2D array
-	snakes = data["snakes"]
-	
-	for snake in snakes["data"]:
-	    print(snake["body"]["id"])
-	    for body in snake.body.data:
-	        Matrix[body["x"]][body["y"]] = 1
-	
+    snakes = data["snakes"]
+
+    for snake in snakes["data"]:
+		print(snake["body"]["id"])
+		for body in snake.body.data:
+			Matrix[body["x"]][body["y"]] = 1
+
 	##establish where we are on board
-	myX = data["you"]["body"]["data"]["x"]
-	myY = data["you"]["body"]["data"]["y"]
-	
-	Matrix[myX][myY] = 10
-			
+    myX = data["you"]["body"]["data"]["x"]
+    myY = data["you"]["body"]["data"]["y"]
+
+    Matrix[myX][myY] = 10
+
 	##set up for logic
-	
-	Goes = [0,0,0,0]
-	Goes = route(Goes, myX, myY)
-	direction = directions[index(max(goes))]
-	
-	print direction
+
+    Goes = [0,0,0,0]
+    Goes = route(Goes, myX, myY)
+    direction = directions[index(max(goes))]
+
+    print direction
     return {
         'move': direction,
         'taunt': 'battlesnake-python!'
@@ -86,7 +84,7 @@ def route(Goes, myX, myY):
 			Goes[0]+1
 		elif Matrix[myX][myY-1]==-1:
 			Goes[0]+2
-	if myY+1 <= board_height:	
+	if myY+1 <= board_height:
 		if Matrix[myX][myY+1]==0:
 			Goes[1]+1
 		elif Matrix[myX][myY+1]==-1:
@@ -101,17 +99,17 @@ def route(Goes, myX, myY):
 			Goes[3]+1
 		elif Matrix[myX+1][myY]==-1:
 			Goes[3]+2
-	
+
 	for x in Goes:
 		if x != max(Goes):
 			x=0
-	
-	
+
+
 	return Goes
-	
-	
-	
-	
+
+
+
+
 
 # Expose WSGI app (so gunicorn can find it)
 application = bottle.default_app()
